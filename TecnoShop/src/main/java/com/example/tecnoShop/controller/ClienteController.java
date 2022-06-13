@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tecnoShop.model.Cliente;
 import com.example.tecnoShop.service.ClienteService;
-import com.fasterxml.jackson.annotation.JsonValue;
+//import com.fasterxml.jackson.annotation.JsonValue;
 
 
 @RestController
