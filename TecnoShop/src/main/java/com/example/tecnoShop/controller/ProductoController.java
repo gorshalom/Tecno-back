@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,17 +35,22 @@ public class ProductoController {
 	}
 	
 	@GetMapping("{id}")
-	public Producto getProducto(@RequestParam(name = "id")Integer id){
+	public Producto getProducto(@PathVariable Integer id){
 		return productoServiceImp.getProducto(id);
+	}
+	
+	@GetMapping("/categoria")
+	public List<Producto> findByCategoria(@RequestParam(name = "search")String categoria){		
+		return productoServiceImp.findByCategoria(categoria);
 	}
 	
 	@PostMapping
 	public Producto saveProducto(@RequestBody Producto producto) {
-		return productoServiceImp.saveCliente(producto);
+		return productoServiceImp.saveProducto(producto);
 	}
 	
 	@DeleteMapping("{id}")
-	public Boolean deleteProducto(@RequestParam(name = "id") Integer id) {
+	public Boolean deleteProducto(@PathVariable Integer id) {
 		return productoServiceImp.deleteProducto(id);
 	}
 	

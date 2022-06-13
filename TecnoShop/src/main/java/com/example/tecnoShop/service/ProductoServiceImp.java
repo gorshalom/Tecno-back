@@ -1,9 +1,11 @@
 package com.example.tecnoShop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.example.tecnoShop.model.Producto;
 import com.example.tecnoShop.repository.ProductoRepository;
@@ -20,32 +22,40 @@ public class ProductoServiceImp implements ProductoService {
 
 	@Override
 	public Producto getProducto(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Producto> producto = productoRepository.findById(id);
+		return producto.orElse(null);
+		
 	}
 
 	@Override
 	public List<Producto> getProductos() {
-		// TODO Auto-generated method stub
-		return null;
+		return productoRepository.findAll();
 	}
 
 	@Override
-	public Producto saveCliente(Producto producto) {
-		// TODO Auto-generated method stub
-		return null;
+	public Producto saveProducto(Producto producto) {
+		return productoRepository.save(producto);
 	}
 
 	@Override
 	public Boolean deleteProducto(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			productoRepository.deleteById(id);
+			return true;			
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public Producto updateProducto(Producto producto) {
-		// TODO Auto-generated method stub
-		return null;
+		return productoRepository.save(producto);
+	}
+
+
+	@Override
+	public List<Producto> findByCategoria(String categoria) {		
+		return productoRepository.findByCategoria(categoria);
 	}
 	
 }

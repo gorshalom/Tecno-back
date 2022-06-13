@@ -10,10 +10,12 @@ public interface ProductoService {
 	// Leer
 	Producto getProducto(Integer id);
 	List<Producto> getProductos();
+	List<Producto> findByCategoria(String categoria);
+	
 	
 	
 	//Guardar
-	Producto saveCliente(Producto producto);
+	Producto saveProducto(Producto producto);
 	
 	
 	//Borrar

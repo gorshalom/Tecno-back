@@ -42,6 +42,8 @@ public class ClienteController {
 		return clienteService.getClientes();
 	}
 	
+	
+	
 	@GetMapping("/validaCredenciales")
 	public Cliente validaCredenciales(
 			@RequestBody String contrasenia,
