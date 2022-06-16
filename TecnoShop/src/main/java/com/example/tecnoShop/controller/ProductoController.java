@@ -29,7 +29,7 @@ public class ProductoController {
 		this.productoServiceImp=productoServiceImp;
 	}
 	
-	@GetMapping("all")
+	@GetMapping("/all")
 	public List<Producto> getProductos(){		
 		return productoServiceImp.getProductos();
 	}
@@ -42,6 +42,17 @@ public class ProductoController {
 	@GetMapping("/categoria")
 	public List<Producto> findByCategoria(@RequestParam(name = "search")String categoria){		
 		return productoServiceImp.findByCategoria(categoria);
+	}
+	
+	@GetMapping("/tendencias")
+	public List<Producto> getTendencias(){		
+		return productoServiceImp.findTendencias();
+	}
+	
+	@GetMapping("/search")
+	public List<Producto> getParam(@RequestParam(name = "search")String param){	
+		System.out.println(param);
+		return productoServiceImp.findParam(param);
 	}
 	
 	@PostMapping

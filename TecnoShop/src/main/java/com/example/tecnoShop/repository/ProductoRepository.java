@@ -18,6 +18,16 @@ public interface ProductoRepository extends JpaRepository<Producto,Integer>  {
 	@Query(value = "SELECT * FROM producto WHERE categoria = ?1 ;" , nativeQuery=true)
 	List<Producto> findByCategoria(String categoria);
 	
+	@Query(value = "SELECT * FROM producto ORDER BY vendidos DESC LIMIT 8 ;" , nativeQuery=true)
+	List<Producto> findTendencias();
+	
+	@Query(value = "SELECT * FROM producto WHERE "
+			+ "nombre LIKE CONCAT('%',:param,'%') "
+			+ "OR categoria LIKE CONCAT('%',:param,'%') "
+			+ "OR color LIKE CONCAT('%',:param,'%') "
+			+ "OR detalles LIKE CONCAT('%',:param,'%') ;" , nativeQuery=true)
+	List<Producto> findParam(@Param("param") String param);
+	
 	
 	
 }

@@ -11,7 +11,8 @@ public interface ProductoService {
 	Producto getProducto(Integer id);
 	List<Producto> getProductos();
 	List<Producto> findByCategoria(String categoria);
-	
+	List<Producto> findTendencias();
+	List<Producto> findParam(String param);
 	
 	
 	//Guardar

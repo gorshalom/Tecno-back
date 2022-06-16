@@ -16,19 +16,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity //representacion de la informacion que nosotros necesitamos
-@Table(name = "imagenes")
-public class Imagenes {
+@Table(name = "opinion")
+public class Opinion {	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, name="id_imagen")
+	@Column(nullable = false, name="opinion_id")
 	private Integer id;
-		
-	@Column(nullable = false, name="nombre")
-	private String nombre;
 	
-	@Column(nullable = false, name="url")
-	private String url;	
+	@Column(nullable = false, name="calificacion")
+	private Float calificacion;
+	
+	@Column(nullable = false, name="opinion")
+	private String opinion;
+	
+	@Column(nullable = false, name="autor")
+	private String autor;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_producto", nullable = false)
+	@JsonProperty(access = Access.WRITE_ONLY)
+    private Producto producto;
+		
 	
 	@Column(nullable = true, name="creado")
 	private LocalDateTime creado;
@@ -37,23 +47,21 @@ public class Imagenes {
 	private LocalDateTime modificado;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_producto", nullable = false)
-	@JsonProperty(access = Access.WRITE_ONLY)
-    private Producto producto;
 	
-	
-
-	public Imagenes() {
-		super();
+	public String getOpinion() {
+		return opinion;
 	}
 
-	public Imagenes(Integer id, String nombre, String url, Producto producto) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.url = url;
-		this.producto = producto;
+	public void setOpinion(String opinion) {
+		this.opinion = opinion;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
 	public Producto getProducto() {
@@ -65,50 +73,45 @@ public class Imagenes {
 	}
 
 	public Integer getId() {
-		return id;
+	    return id;
 	}
-
+	
 	public void setId(Integer id) {
-		this.id = id;
+	    this.id = id;
 	}
-
-	public String getNombre() {
-		return nombre;
+	
+	
+	public Float getCalificacion() {
+	    return calificacion;
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	
+	public void setCalificacion(Float calificacion) {
+	    this.calificacion = calificacion;
 	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
+	
+	
 	public LocalDateTime getCreado() {
-		return creado;
+	    return creado;
 	}
-
+	
 	public void setCreado(LocalDateTime creado) {
-		this.creado = creado;
+	    this.creado = creado;
 	}
-
+	
 	public LocalDateTime getModificado() {
-		return modificado;
+	    return modificado;
 	}
-
+	
 	public void setModificado(LocalDateTime modificado) {
-		this.modificado = modificado;
+	    this.modificado = modificado;
 	}
 
 	@Override
 	public String toString() {
-		return "Imagenes [id=" + id + ", nombre=" + nombre + ", url=" + url + ", creado=" + creado + ", modificado="
-				+ modificado + "]";
+		return "Opinion [id=" + id + ", calificacion=" + calificacion + ", opinion=" + opinion + ", autor=" + autor
+				+ ", producto=" + producto + ", creado=" + creado + ", modificado=" + modificado + "]";
 	}
-
+	
+	
 	
 }

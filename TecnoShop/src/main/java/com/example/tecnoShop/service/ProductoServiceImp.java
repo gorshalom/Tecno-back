@@ -57,5 +57,17 @@ public class ProductoServiceImp implements ProductoService {
 	public List<Producto> findByCategoria(String categoria) {		
 		return productoRepository.findByCategoria(categoria);
 	}
+
+
+	@Override
+	public List<Producto> findTendencias() {
+		return productoRepository.findTendencias();
+	}
+
+
+	@Override
+	public List<Producto> findParam(String param) {
+		return productoRepository.findParam(param);
+	}
 	
 }
